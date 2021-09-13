@@ -1,4 +1,4 @@
-cusip
+lei
 ====
 An `LEI` type for working with validated Committee on Legal Entity Identifiers (LEIs) as defined in
 [ISO 17442:2020](https://www.iso.org/standard/78829.html) "Financial services — Legal entity identifier (LEI) — Part 1:
