@@ -1,0 +1,19 @@
+[package]
+name = "lei"
+version = "0.1.0"
+description = "Support for creating and validating Legal Entity Identifiers (LEIs)"
+authors = ["Gregor Purdy <gregor@abcelo.com>"]
+license = "MIT OR Apache-2.0"
+edition = "2018"
+keywords = ["lei", "identifier", "finance", "entity", "company"]
+readme = "README.md"
+repository = "https://github.com/gnp/lei-rs.git"
+include = []
+
+[dev-dependencies]
+proptest = "1.0"
+criterion = { version = "0.3", features = ["html_reports"] }
+
+[dependencies]
+bstr = { version = "0.2", features = ["std"] }
+iso_iec_7064 = "0.1"
