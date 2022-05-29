@@ -6,6 +6,7 @@ authors = ["Gregor Purdy <gregor@abcelo.com>"]
 license = "MIT OR Apache-2.0"
 edition = "2021"
 keywords = ["lei", "identifier", "finance", "entity", "company"]
+categories = ["parsing"]
 readme = "README.md"
 repository = "https://github.com/gnp/lei-rs.git"
 include = []
