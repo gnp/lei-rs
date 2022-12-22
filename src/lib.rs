@@ -267,6 +267,13 @@ pub fn validate(value: &str) -> bool {
 pub struct ReadmeDoctests;
 
 /// An LEI in confirmed valid format.
+///
+/// You cannot construct an LEI value manually. This does not compile:
+///
+/// ```compile_fail
+/// use lei;
+/// let cannot_construct = lei::LEI([0_u8; 20]);
+/// ```
 #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Hash)]
 #[repr(transparent)]
 #[allow(clippy::upper_case_acronyms)]
