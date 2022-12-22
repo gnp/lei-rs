@@ -30,8 +30,7 @@
 //!
 //! * [ISO/IEC 7064](https://crates.io/crates/iso_iec_7064): Check character systems (ISO/IEC 7064:2003)
 
-use std::fmt::Formatter;
-use std::fmt::{Debug, Display};
+use std::fmt;
 use std::str::FromStr;
 
 use bstr::ByteSlice;
@@ -268,15 +267,22 @@ pub fn validate(value: &str) -> bool {
 pub struct ReadmeDoctests;
 
 /// An LEI in confirmed valid format.
-#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Hash, Debug)]
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Hash)]
 #[repr(transparent)]
 #[allow(clippy::upper_case_acronyms)]
 pub struct LEI([u8; 20]);
 
-impl Display for LEI {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        let temp = unsafe { self.0[..].to_str_unchecked() }; // This is safe because we know it is ASCII
+impl fmt::Display for LEI {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let temp = unsafe { self.as_bytes().to_str_unchecked() }; // This is safe because we know it is ASCII
         write!(f, "{}", temp)
+    }
+}
+
+impl fmt::Debug for LEI {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let temp = unsafe { self.as_bytes().to_str_unchecked() }; // This is safe because we know it is ASCII
+        write!(f, "LEI({})", temp)
     }
 }
 
@@ -289,6 +295,11 @@ impl FromStr for LEI {
 }
 
 impl LEI {
+    /// Internal convenience function for treating the ASCII characters as a byte-array slice.
+    fn as_bytes(&self) -> &[u8] {
+        &self.0[..]
+    }
+
     /// Return just the _LOU ID_ portion of the LEI.
     pub fn lou_id(&self) -> &str {
         unsafe { self.0[0..4].to_str_unchecked() } // This is safe because we know it is ASCII
