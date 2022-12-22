@@ -263,6 +263,10 @@ pub fn validate(value: &str) -> bool {
     true
 }
 
+#[doc = include_str!("../README.md")]
+#[cfg(doctest)]
+pub struct ReadmeDoctests;
+
 /// An LEI in confirmed valid format.
 #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Hash, Debug)]
 #[repr(transparent)]
