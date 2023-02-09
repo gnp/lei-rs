@@ -282,14 +282,14 @@ pub struct LEI([u8; 20]);
 impl fmt::Display for LEI {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let temp = unsafe { self.as_bytes().to_str_unchecked() }; // This is safe because we know it is ASCII
-        write!(f, "{}", temp)
+        write!(f, "{temp}")
     }
 }
 
 impl fmt::Debug for LEI {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let temp = unsafe { self.as_bytes().to_str_unchecked() }; // This is safe because we know it is ASCII
-        write!(f, "LEI({})", temp)
+        write!(f, "LEI({temp})")
     }
 }
 

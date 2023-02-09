@@ -61,39 +61,39 @@ impl Debug for LEIError {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
             LEIError::InvalidLength { was } => {
-                write!(f, "InvalidLength {{ was: {:?} }}", was)
+                write!(f, "InvalidLength {{ was: {was:?} }}")
             }
             LEIError::InvalidPayloadLength { was } => {
-                write!(f, "InvalidPayloadLength {{ was: {:?} }}", was)
+                write!(f, "InvalidPayloadLength {{ was: {was:?} }}")
             }
             LEIError::InvalidLouIdLength { was } => {
-                write!(f, "InvalidLouIdLength {{ was: {:?} }}", was)
+                write!(f, "InvalidLouIdLength {{ was: {was:?} }}")
             }
             LEIError::InvalidEntityIdLength { was } => {
-                write!(f, "InvalidEntityIdLength {{ was: {:?} }}", was)
+                write!(f, "InvalidEntityIdLength {{ was: {was:?} }}")
             }
             LEIError::InvalidLouId { was } => match std::str::from_utf8(was) {
                 Ok(s) => {
-                    write!(f, "InvalidLouId {{ was: {:?} }}", s)
+                    write!(f, "InvalidLouId {{ was: {s:?} }}")
                 }
                 Err(_) => {
-                    write!(f, "InvalidLouId {{ was: (invalid UTF-8) {:?} }}", was)
+                    write!(f, "InvalidLouId {{ was: (invalid UTF-8) {was:?} }}")
                 }
             },
             LEIError::InvalidEntityId { was } => match std::str::from_utf8(was) {
                 Ok(s) => {
-                    write!(f, "InvalidEntityId {{ was: {:?} }}", s)
+                    write!(f, "InvalidEntityId {{ was: {s:?} }}")
                 }
                 Err(_) => {
-                    write!(f, "InvalidEntityId {{ was: (invalid UTF-8) {:?} }}", was)
+                    write!(f, "InvalidEntityId {{ was: (invalid UTF-8) {was:?} }}")
                 }
             },
             LEIError::InvalidCheckDigits { was } => match std::str::from_utf8(was) {
                 Ok(s) => {
-                    write!(f, "InvalidCheckDigits {{ was: {:?} }}", s)
+                    write!(f, "InvalidCheckDigits {{ was: {s:?} }}")
                 }
                 Err(_) => {
-                    write!(f, "InvalidCheckDigits {{ was: (invalid UTF-8) {:?} }}", was)
+                    write!(f, "InvalidCheckDigits {{ was: (invalid UTF-8) {was:?} }}")
                 }
             },
             LEIError::IncorrectCheckDigits { was, expected } => {
@@ -102,8 +102,7 @@ impl Debug for LEIError {
 
                 write!(
                     f,
-                    "IncorrectCheckDigits {{ was: {:?}, expected: {:?} }}",
-                    was_utf8, expected_utf8
+                    "IncorrectCheckDigits {{ was: {was_utf8:?}, expected: {expected_utf8:?} }}"
                 )
             }
         }
@@ -114,58 +113,51 @@ impl Display for LEIError {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
             LEIError::InvalidLength { was } => {
-                write!(f, "invalid length {} bytes when expecting 20", was)
+                write!(f, "invalid length {was} bytes when expecting 20")
             }
             LEIError::InvalidPayloadLength { was } => {
-                write!(f, "invalid Payload length {} bytes when expecting 18", was)
+                write!(f, "invalid Payload length {was} bytes when expecting 18")
             }
             LEIError::InvalidLouIdLength { was } => {
-                write!(f, "invalid LOU ID length {} bytes when expecting 4", was)
+                write!(f, "invalid LOU ID length {was} bytes when expecting 4")
             }
             LEIError::InvalidEntityIdLength { was } => {
-                write!(
-                    f,
-                    "invalid Entity ID length {} bytes when expecting 14",
-                    was
-                )
+                write!(f, "invalid Entity ID length {was} bytes when expecting 14")
             }
             LEIError::InvalidLouId { was } => match std::str::from_utf8(was) {
                 Ok(s) => {
                     write!(
                         f,
-                        "prefix {:?} is not 4 uppercase ASCII alphanumeric characters",
-                        s
+                        "prefix {s:?} is not 4 uppercase ASCII alphanumeric characters"
                     )
                 }
                 Err(_) => {
                     write!(f,
-                    "prefix (invalid UTF-8) {:?} is not 4 uppercase ASCII alphanumeric characters",
-                    was)
+                    "prefix (invalid UTF-8) {was:?} is not 4 uppercase ASCII alphanumeric characters"
+                    )
                 }
             },
             LEIError::InvalidEntityId { was } => match std::str::from_utf8(was) {
                 Ok(s) => {
                     write!(
                         f,
-                        "basic code {:?} is not 14 uppercase ASCII alphanumeric characters",
-                        s
+                        "basic code {s:?} is not 14 uppercase ASCII alphanumeric characters"
                     )
                 }
                 Err(_) => {
                     write!(f,
-                "basic code (invalid UTF-8) {:?} is not 14 uppercase ASCII alphanumeric characters",
-                    was)
+                "basic code (invalid UTF-8) {was:?} is not 14 uppercase ASCII alphanumeric characters"
+                    )
                 }
             },
             LEIError::InvalidCheckDigits { was } => match std::str::from_utf8(was) {
                 Ok(s) => {
-                    write!(f, "check digits {:?} is not two ASCII decimal digits", s)
+                    write!(f, "check digits {s:?} is not two ASCII decimal digits")
                 }
                 Err(_) => {
                     write!(
                         f,
-                        "check digits (invalid UTF-8) {:?} is not two ASCII decimal digits",
-                        was
+                        "check digits (invalid UTF-8) {was:?} is not two ASCII decimal digits"
                     )
                 }
             },
@@ -175,8 +167,7 @@ impl Display for LEIError {
 
                 write!(
                     f,
-                    "incorrect check digits {:?} when expecting {:?}",
-                    was_utf8, expected_utf8
+                    "incorrect check digits {was_utf8:?} when expecting {expected_utf8:?}"
                 )
             }
         }
