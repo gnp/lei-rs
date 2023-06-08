@@ -31,9 +31,8 @@
 //! * [ISO/IEC 7064](https://crates.io/crates/iso_iec_7064): Check character systems (ISO/IEC 7064:2003)
 
 use std::fmt;
+use std::str::from_utf8_unchecked;
 use std::str::FromStr;
-
-use bstr::ByteSlice;
 
 use iso_iec_7064::{System, MOD_97_10};
 
@@ -281,14 +280,14 @@ pub struct LEI([u8; 20]);
 
 impl fmt::Display for LEI {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let temp = unsafe { self.as_bytes().to_str_unchecked() }; // This is safe because we know it is ASCII
+        let temp = unsafe { from_utf8_unchecked(self.as_bytes()) }; // This is safe because we know it is ASCII
         write!(f, "{temp}")
     }
 }
 
 impl fmt::Debug for LEI {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let temp = unsafe { self.as_bytes().to_str_unchecked() }; // This is safe because we know it is ASCII
+        let temp = unsafe { from_utf8_unchecked(self.as_bytes()) }; // This is safe because we know it is ASCII
         write!(f, "LEI({temp})")
     }
 }
@@ -309,22 +308,22 @@ impl LEI {
 
     /// Return just the _LOU ID_ portion of the LEI.
     pub fn lou_id(&self) -> &str {
-        unsafe { self.0[0..4].to_str_unchecked() } // This is safe because we know it is ASCII
+        unsafe { from_utf8_unchecked(&self.0[0..4]) } // This is safe because we know it is ASCII
     }
 
     /// Return just the _Entity ID_ portion of the LEI.
     pub fn entity_id(&self) -> &str {
-        unsafe { self.0[4..18].to_str_unchecked() } // This is safe because we know it is ASCII
+        unsafe { from_utf8_unchecked(&self.0[4..18]) } // This is safe because we know it is ASCII
     }
 
     /// Return the _Payload_ &mdash; everything except the _Check Digits_.
     pub fn payload(&self) -> &str {
-        unsafe { self.0[0..18].to_str_unchecked() } // This is safe because we know it is ASCII
+        unsafe { from_utf8_unchecked(&self.0[0..18]) } // This is safe because we know it is ASCII
     }
 
     /// Return just the _Check Digit_ portion of the ISIN.
     pub fn check_digits(&self) -> &str {
-        unsafe { self.0[18..20].to_str_unchecked() } // This is safe because we know it is ASCII
+        unsafe { from_utf8_unchecked(&self.0[18..20]) } // This is safe because we know it is ASCII
     }
 }
 

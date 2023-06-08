@@ -6,8 +6,7 @@
 use std::error::Error;
 use std::fmt::Formatter;
 use std::fmt::{Debug, Display};
-
-use bstr::ByteSlice;
+use std::str::from_utf8_unchecked;
 
 /// All the ways parsing or building could fail.
 #[non_exhaustive]
@@ -97,8 +96,8 @@ impl Debug for LEIError {
                 }
             },
             LEIError::IncorrectCheckDigits { was, expected } => {
-                let was_utf8 = unsafe { was.to_str_unchecked() }; // This is safe because we know it is ASCII
-                let expected_utf8 = unsafe { expected.to_str_unchecked() }; // This is safe because we know it is ASCII
+                let was_utf8 = unsafe { from_utf8_unchecked(was) }; // This is safe because we know it is ASCII
+                let expected_utf8 = unsafe { from_utf8_unchecked(expected) }; // This is safe because we know it is ASCII
 
                 write!(
                     f,
@@ -162,8 +161,8 @@ impl Display for LEIError {
                 }
             },
             LEIError::IncorrectCheckDigits { was, expected } => {
-                let was_utf8 = unsafe { was.to_str_unchecked() }; // This is safe because we know it is ASCII
-                let expected_utf8 = unsafe { expected.to_str_unchecked() }; // This is safe because we know it is ASCII
+                let was_utf8 = unsafe { from_utf8_unchecked(was) }; // This is safe because we know it is ASCII
+                let expected_utf8 = unsafe { from_utf8_unchecked(expected) }; // This is safe because we know it is ASCII
 
                 write!(
                     f,
