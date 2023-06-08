@@ -16,7 +16,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-lei = "0.1"
+lei = "0.2"
 ```
 
 
