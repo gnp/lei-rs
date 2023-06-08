@@ -1,6 +1,6 @@
 [package]
 name = "lei"
-version = "0.2.4"
+version = "0.2.5"
 description = "Support for creating and validating Legal Entity Identifiers (LEIs)"
 authors = ["Gregor Purdy <gregor@abcelo.com>"]
 license = "MIT OR Apache-2.0"
