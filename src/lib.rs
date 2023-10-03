@@ -273,7 +273,7 @@ pub struct ReadmeDoctests;
 /// use lei;
 /// let cannot_construct = lei::LEI([0_u8; 20]);
 /// ```
-#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Hash)]
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash)]
 #[repr(transparent)]
 #[allow(clippy::upper_case_acronyms)]
 pub struct LEI([u8; 20]);
