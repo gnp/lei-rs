@@ -1,5 +1,5 @@
 use lei;
-fn main() -> () {
+fn main() {
     let lei_string = "YZ83GD8L7GG84979J516"; // Example from Section A.1 of The Standard
     match lei::parse(lei_string) {
         Ok(lei) => {
