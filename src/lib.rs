@@ -374,8 +374,8 @@ mod tests {
                 case
             );
             let is_valid = validate(case);
-            assert_eq!(
-                true, is_valid,
+            assert!(
+                is_valid,
                 "Successfully parsed {:?} but got false from validate()!",
                 case
             );
@@ -406,8 +406,8 @@ mod tests {
                 case
             );
             let is_valid = validate(case);
-            assert_eq!(
-                true, is_valid,
+            assert!(
+                is_valid,
                 "Successfully parsed {:?} but got false from validate()!",
                 case
             );
