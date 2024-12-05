@@ -12,7 +12,7 @@ impl<'a> DigitsIterator<'a> {
     }
 }
 
-impl<'a> Iterator for DigitsIterator<'a> {
+impl Iterator for DigitsIterator<'_> {
     type Item = u8;
     fn next(&mut self) -> Option<u8> {
         match self.scratch {
