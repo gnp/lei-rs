@@ -8,12 +8,12 @@
 //! An LEI is comprised of 20 ASCII characters with the following parts, in order:
 //!
 //! 1. A four-character uppercase alphanumeric _LOU Identifier_ corresponding to the _Local
-//! Operating Unit_ that issued the LEI, according to [the GLEIF web
-//! site](https://www.gleif.org/en/about-lei/iso-17442-the-lei-code-structure).
+//!    Operating Unit_ that issued the LEI, according to [the GLEIF web
+//!    site](https://www.gleif.org/en/about-lei/iso-17442-the-lei-code-structure).
 //! 2. A 14-character uppercase alphanumeric _Entity Identifier_ assigned by the corresponding
-//! LOU.
+//!    LOU.
 //! 3. Two decimal digits representing the _Check Digit Pair_ computed using a method based on the
-//! ISO/IEC 7064, MOD 97-10 _Check Character System_.
+//!    ISO/IEC 7064, MOD 97-10 _Check Character System_.
 //!
 //! Use the `parse()` or `parse_loose()` methods on the LEI type to convert a string to a validated
 //! LEI.
